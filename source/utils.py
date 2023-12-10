@@ -462,7 +462,11 @@ def test_fetch_fuzzy_features(q1,q2):
 
     return fuzzy_features
 
-def query_point_creator(self,q1,q2):
+import pickle
+
+def query_point_creator(q1,q2):
+        
+        cv = pickle.load(open("/Users/harshalrajput/Desktop/nlp_mlops/artifacts/cv.pkl", "rb"))
 
         
         input_query = []
@@ -496,10 +500,10 @@ def query_point_creator(self,q1,q2):
         input_query.extend(length_features)
         
         # bow feature for q1
-        q1_bow = self.cv.countvector.transform([q1]).toarray()
+        q1_bow = cv.transform([q1]).toarray()
         
         # bow feature for q2
-        q2_bow = self.cv.countvector.transform([q2]).toarray()
+        q2_bow = cv.transform([q2]).toarray()
         
         
         
